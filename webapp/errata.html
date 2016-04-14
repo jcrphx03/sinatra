@@ -1,0 +1,565 @@
+<!--[if IE ]><![endif]-->
+<!doctype html>
+<!--[if lt IE 8]> <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]> <html class="no-js lt-ie9 ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]> <html class="no-js lt-ie10 ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 10)|!(IE)]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ <meta name="description" content="A book about Docker.">
+ <meta name="author" content="James Turnbull">
+ <meta name="keywords" content="docker,docker book,containers,virtualization,testing,devops">
+ <link rel="shortcut icon" href="/img/favicon_whale.png" />
+ <link rel="canonical" href="https://www.dockerbook.com/">
+
+ <title>The Docker Book</title>
+
+ <!-- Bootstrap core CSS use 3.1.1 and up framework :: this is the base css without any color changes -->
+<link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+ <!-- Way Better Bootstrap Modals INSTRUCTIONS: https://github.com/jschr/bootstrap-modal/ -->
+ <!-- DEMO:: http://jschr.github.io/bootstrap-modal/bs3.html -->
+<link href="/assets/css/bootstrap-modal.css" rel="stylesheet" type="text/css">
+
+ <!-- Google Font(s) -->
+ <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,900,900italic,700,700italic,600,600italic,200,200italic' rel='stylesheet' type='text/css'>
+ <link href='https://fonts.googleapis.com/css?family=Fredericka+the+Great' rel='stylesheet' type='text/css'>
+
+ <!-- Wrapper and Supporting Styles -->
+ <link href="/assets/css/different_base.css" rel="stylesheet" type="text/css">
+ <!-- ####### Put your color css last class 'base-color' is only used for demo ######### -->
+<link href="/assets/css/colors/black-white.css" class="base-color" rel="stylesheet" type="text/css">
+
+
+ <!-- SCRIPTS IN HEAD ============================================== -->
+
+ <script src="/assets/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+ <!-- NOTE:: jquery 2.x does not support IE 8 so version 1.9.1 is used for older versions of IE
+        :: calling jQuery in the head for ajax work if necessary.
+        -->
+ <!--[if gt IE 8]><!-->
+    <script src="/assets/js/jquery.min.2.0.3.js"></script>
+    <!--<![endif]-->
+ <!--[if lt IE 9]>
+    <script src="/assets/js/1.9.1-jquery.min.js"></script>
+    <![endif]-->
+
+ <!-- WINDOWS 8 Phones BUG FIX -->
+ <script src="/assets/js/windows-fix.js"></script>
+
+ <!--[if lt IE 9]>
+  <script type="text/javascript" src="/assets/js/selectivizr.js"></script>
+<![endif]-->
+
+
+<!-- ========= GENERATE CODE AND TOUCH ICONS http://iconifier.net/ =========== -->
+
+
+</head>
+
+
+<body>
+
+<!-- accessibility skip to nav skip content -->
+<ul class="sr-only" id="top">
+ <li><a href="#nav" title="Skip to navigation" accesskey="n">Skip to Navigation</a></li>
+ <li><a href="#page" title="Skip to content" accesskey="c">Skip to Content</a></li>
+</ul>
+<!--  /.sr-only accessibility-->
+
+<div id="site-wrapper">
+
+ <!-- ____________ HEADER _______________  -->
+
+ <header class="header clearfix">
+
+  <!-- ____________ BEGIN NAV BAR WRAPPER _______________  -->
+  <div class="nav-wrapper">
+
+   <!-- ____________ PRIMARY MENU _______________  -->
+
+   <!-- 7 main links max with short titles as per most sites in English  if you add more or longer titles the CSS will need to be adjusted per media query -->
+
+   <nav class="nav-bar" id="nav" role="navigation">
+
+    <ul class="primary-nav">
+     <li class="active"><a href="/#">Home</a></li> <!-- add class .active on li item when the page is current -->
+     <li><a href="/#buy">Buy the book</a></li>
+     <li><a href="/#toc">What's in the book?</a></li>
+     <li><a href="/TheDockerBook_sample.pdf">Sample chapter</a></li>
+     <li><a href="/code/index.html">Code</a></li>
+     <li><a href="/errata.html">Errata</a></li>
+     <li><a href="/#signup" data-toggle="modal">Sign up for updates!</a></li>
+     <li><a href="/#bio">Author</a></li>
+    </ul>
+
+   </nav>
+  </div>
+  <!-- /nav-wrapper -->
+
+  <!-- ____________ SUB BAR  _______________  -->
+  <ul class="sub-bar clearfix">
+
+  <!-- tagline hides at 767px -->
+   <li class="visible-xs sb-left"><a href="#"><i class="fa fa-envelope-o fw"></i> Contact</a></li>
+
+   <li class="visible-xs sb-left"><a href="#" class="toggle-social"><i class="fa fa-comments fw"></i> Follow</a></li>
+
+   <li class="sb-right sb-social-wrapper">
+   <ul class="social">
+    <li><a href="https://twitter.com/kartar" class="fa fa-twitter tooltip-hover" data-placement="bottom" title="Follow on Twitter"></a></li>
+    <li><a href="https://github.com/jamtur01" class="fa fa-github tooltip-hover" data-placement="bottom" title="Visit GitHub Page"></a></li>
+    <li><a href="https://kartar.net" class="fa fa-wordpress tooltip-hover" data-placement="bottom" title="Visit blog"></a></li>
+    <li><a href="https://www.linkedin.com/in/turnbulljames/" class="fa fa-linkedin tooltip-hover" data-placement="bottom" title="Follow Us on LinkedIn"></a></li>
+    <li class="last"><a href="https://www.jamesturnbull.net" class="fa fa-home tooltip-hover" data-placement="bottom" title="Visit home page"></a></li>
+    <!--add class last to last visible item -->
+    <li class="closeMe"><a href="#" class="fa fa-times visible-xs"></a></li>
+    <!--this is visible when screen is small this when small-->
+   </ul>
+   <!-- .social inside sub-bar -->
+   </li>
+
+  </ul>
+  <!-- /sub-bar -->
+
+ </header>
+ <!-- /header -->
+
+<div class="container">
+ <div id="errata" class="row">
+   <div class="col-sm-6">
+    <h2 class="h1 spaced-out-header uppercase font-weight-bold">Errata</h2>
+   <p>
+
+<p>Mail errata and issues <a href="mailto:james+errata@lovedthanlost.net">here</a>.</p>
+
+<p>To download new versions:</p>
+
+<ul>
+<li>If you bought directly from this site use your existing download link. If you need a new email link please email me.
+<li>If you bought from Amazon or another online vendor please contact their support and request an updated download.
+</ul>
+
+<h1>Versions and Errata</h1>
+
+<h2>v1.10.3 - 3/21/2016</h2>
+<ul>
+<li>Fixed Consul downloads thanks to Brian Maher.</li>
+<li>Fixed 404'ed link thanks to Guido Dechamps.</li>
+<li>Fixed typo thanks to Borys Borysenko.</li>
+<li>Updated Consul Dockerfile and images.</li>
+<li>Cleaned up some errata and general typos.</li>
+<li>Fixed failed instruction example.</li>
+</ul>
+
+<h2>v1.10.2 - 2/25/2016</h2>
+<ul>
+<li>Fixed Networking typo thanks to Cristian Graziano</li>
+<li>Fixed formatting error thanks to Michael Dwyer</li>
+<li>Typo fixed thanks to Rodrigo Mammano.</li>
+<li>Updated some output thanks to Larry Cai.</li>
+</ul>
+
+<h2>v1.9.1 - 11/25/2015</h2>
+<ul>
+<li>Added Docker Networking section to Chapter 5 to contrast with Docker
+"links".</li>
+<li>Updated examples in Chapter 6 to use Docker Networking rather than links.</li>
+<li>Fixed apt-key command thanks to Bruno Emer.</li>
+<li>Updated docker stats output.</li>
+<li>Added STOPSIGNAL instruction.</li>
+<li>Added the ARG instruction.</li>
+<li>Updated Jekyll installation instructions to work with Ubuntu 14.04 thanks
+to Christophe Tafani-Dereeper.</li>
+<li>Updated versions for Docker 1.9.</li>
+<li>Updated Docker Compose for 1.9 release.</li>
+<li>Updated Docker Swarm for 1.9 release.</li>
+</ul>
+
+<h2>v1.8.1 - 9/9/2015</h2>
+<ul>
+<li>Updated docker inspect command for API changes from Volumes to Mounts.</li>
+<li>Updated installation instructions for lxc-docker to docker-engine package
+name change.</li>
+<li>Added mention of Jenkins Docker plugin as an alternative.</li>
+<li>Numerous errata fixes and additions from Robert P. J. Day.</li>
+</ul>
+
+<h2>v1.8.0 - 8/16/2015</h2>
+<ul>
+<li>Replaced Boot2Docker installation process with Docker Toolbox in Chapter 2.</li>
+<li>Updated Docker daemon configuration to reflect `docker daemon` sub-command in Chapter 2.</li>
+<li>Mention new logging drivers in Chapter 3.</li>
+<li>Generally updated book for Docker 1.8 release.</li>
+<li>A number of links fixed thanks to Benoit Benedetti</li>
+<li>Removed dead link thanks to Didier Lalli.</li>
+<li>Added Migrator tool for registry.</li>
+<li>Several useful fixes from Aleksei Iatsiuk.</li>
+<li>Numerous errata fixes and additions from Robert P. J. Day</li>
+
+</ul>
+
+<h2>v1.7.1 - 7/6/2015</h2>
+<ul>
+<li>Updated Jenkins screenshots to reflect new UI</li>
+<li>Fixed apt-transport-https missing from Jenkins Dockerfile</li>
+<li>Fixed chmod thanks to Ryan Dunk</li>
+<li>Fixed typo thanks to Dennis Mueller</li>
+<li>Fixed numerous other errata thanks to the very diligent Ervin Varga!</li>
+<li>Updated docker exec command for 1.7.</li>
+<li>Updated numerous versions and code.</li>
+</ul>
+
+<h2>v1.6.0 - 4/25/2015</h2>
+<ul>
+<li>Updated Docker Registry section</li>
+<li>Added --add-hosts command to Chapter 5.</li>
+<li>Added Kitematic reference.</li>
+<li>Added log-driver section in Chapter 3.</li>
+<li>Added Chocolatey mention.</li>
+<li>Added Docker Hub Enterprise mention.</li>
+<li>Add Swarm section to Chapter 7.</li>
+<li>Updated Fedora package names thanks to Justin Palmer</li>
+<li>Fixed tprov code and fetcher Dockerfile thanks to jasine</li>
+<li>Fixed PDF issues thanks to Tom Fowler.</li>
+<li>Updated Fig to Compose.</li>
+<li>Fixed typo thanks to Michael Dungan</li>
+</ul>
+
+<h2>v1.5.0 - 2/11/2015</h2>
+<ul>
+<li>Added notes about proxy support thanks to Christopher Voltz.</li>
+<li>Updated book for Docker v1.5.0</li>
+<li>Added -f option for docker build</li>
+<li>Added Docker stats command</li>
+<li>Added IPv6 support</li>
+<li>Added some more detailed instructions in Chapter 5 thanks to feedback from Greg Zavertnik</li>
+<li>Clarified docker port with name thanks to Balazs Rau</li>
+</ul>
+
+<h2>v1.4.1 - 12/23/2014</h2>
+<ul>
+<li>Added new environment variable syntax for ENV.</li>
+<li>Fixed insecure-registry typo thanks to Anton Radkevich.</li>
+<li>Added docker create note.</li>
+<li>Updated Fig install and a typo thanks to Benoit Benedetti.</li>
+<li>Updated Boot2Docker release.</li>
+<li>Fixed typo thanks to Alex Leites.</li>
+<li>Fixed installation docs thanks to David Trulli.</li>
+</ul>
+
+<h2>v1.3.2 - 11/16/2014</h2>
+<ul>
+<li>Changed most of the links to be full URLs to better suit the Lulu edition. I hatez paper.</li>
+<li>Updated references to GitHub thanks to Erik Johnson.</li>
+<li>Updated typo in Fig section thanks to Erik Johnson.</li>
+<li>Fixed typo thanks to Martin Suchanek.</li>
+<li>Several typos and issues fixed thanks to Kevin Carter.</li>
+<li>Fixed line wrap thanks to Louis van Ekert.</li>
+<li>Added --insecure_registry flag thanks to Bjoern Neuhaus.</li>
+<li>Some adjustments thanks to feedback from Jose Romero.</li>
+<li>Fixed behavior in Docker images section thanks to Dagobert Renouf.</li>
+</ul>
+
+<h2>v1.3.1 - 10/31/2014</h2>
+<ul>
+<li>Fixed typo thanks to Phillip Kent.</li>
+<li>Fixed typo thanks to Nasser Alshammari.</li>
+<li>Updated frontsmatter.</li>
+<li>Updated Boot2Docker section for 1.3.</li>
+<li>Updated Fig section for 1.3 thanks to Larry Cai.</li>
+<li>Typos fixed thanks to Hubert Banas.</li>
+<li>Typos fixed thanks to Aggelos Orfanakos.</li>
+<li>Typos fixed thanks to George Yoshida.</li>
+<li>Added environment variable re-use support in Dockerfile.</li>
+</ul>
+
+<h2>v1.2.2 - 10/8/2014</h2>
+<ul>
+<li>Added docker exec section.</li>
+<li>Mention container restart updating /etc/hosts</li>
+<li>Fixed broken link thanks to Giacomo Vacco.</li>
+<li>Fixed typo and usage thanks to Dusty Mabe.</li>
+<li>Fixed incorrect directory reference thanks to Jack Bracewell.</li>
+<li>Fixed listing title thanks to David Ceresuela.</li>
+<li>Fixed screenshot thanks to Niels Bom.</li>
+<li>Some clarification on linking and a typo fixed thanks to Michael Dyer.</li>
+</ul>
+
+<h2>v1.2.1 - 9/16/2014</h2>
+<ul>
+<li>Fixed typo thanks to Tim Ambler.</li>
+<li>Updated Apache Mesos reference.</li>
+<li>Fixed some installation issues thanks to Avi Miller.</li>
+<li>Add container restart explanation to Chapter 3.</li>
+<li>Made the Nginx website section clearer thanks to Pradeep Vorugu.</li>
+</ul>
+
+<h2>v1.2.0 - 9/3/2014</h2>
+<ul>
+<li>Added section in Chapter 7 on Consul</li>
+<li>Spelling error fixed thanks to Mick Pollard</li>
+<li>Fixed typos thanks to Giacomo Vacca</li>
+<li>Added Chris Jones blog post on boot2docker</li>
+<li>Fixed daemon start command ordering thanks to Ian Carrie.</li>
+<li>Fixed Fig download link and misc issues thanks to Eric Shamow.</li>
+<li>Fixed typo thanks to Jason Hancock.</li>
+</ul>
+
+<h2>v1.1.1 - 8/22/2014</h2>
+<ul>
+<li>Fixed grammar, docker images section, UUID and VIM install example thanks to Eric Shamow.</li>
+<li>Changed Fig installation and added fig.yml to code thanks to Larry Cai.</li>
+<li>Clarified Boot2Docker explanation thanks to Larry Cai.</li>
+<li>Fixed Chapter 5 Redis example.</li>
+</ul>
+
+<h2>v1.1.0 - 8/16/2014</h2>
+<ul>
+<li>Added Chapter 7 on Fig and Orchestration</li>
+<li>Docker tag example ID fixed in Chapter 4 thanks to Henk Bokhoven</li>
+<li>Fixed systemd startup issue thanks to Elvir Kuric and Scott Collier.</li>
+<li>Fixed typo in ENTRYPOINT syntax thanks to Ramen Rom.</li>
+</ul>
+
+<h2>v1.0.8 - 8/9/2014</h2>
+<ul>
+<li>Updated Redis images with CMD [] to fix https://github.com/docker/docker/pull/6909</li>
+<li>Updated USER section with more details on GID/Group specification.</li>
+</ul>
+
+<h2>v1.0.7 - 8/4/2014</h2>
+<ul>
+<li>Fixed reversed backslashes and extra period thanks to Charles Anderson</li>
+<li>Updated RSpec and Jenkins sample app with correct gems for updated ci_reporter</li>
+<li>Fixed poor explanation of ADD and build context.</li>
+<li>Fixed Centos tag in Jenkins Multi-OS example.</li>
+</ul>
+
+<h2>v1.0.6 - 7/31/2014</h2>
+<ul>
+<li>Extraneous } fixed thanks to Adrian Moisey.</li>
+<li>Added Boot2Docker section better explaining how to use the examples in the book.</li>
+</ul>
+
+<h2>v1.0.5 - 7/29/2014</h2>
+<ul>
+<li>Changed all dotcloud/docker URLs to docker/docker.</li>
+<li>Fixed some long code examples and output.</li>
+<li>A number of fixes thanks again to Larry Cai.</li>
+<li>Fixes to C5 thanks to feedback from Gerrit Sere.
+</ul>
+
+<h2>v1.0.4 - 7/27/2014</h2>
+<ul>
+<li>Updated Jenkins build thanks to Larry Cai.</li>
+<li>Fixed ONBUILD error thanks to Gerrit Sere.</li>
+<li>Replaced SSHd example in C4 with static web server.</li>
+</ul>
+
+<h2>v1.0.3 - 7/23/2014</h2>
+<ul>
+<li>Small fixes and typos thanks to Larry Cai.</li>
+<li>Fixed extra directory path.</li>
+<li>Fixed 12.0.4 and other typos thanks to Adrian Moisey.</li>
+<li>Fixed to SSH example thanks to Simon Burns.</li>
+<li>Fixed confusing SSH login example.</li>
+<li>Updated architecture diagram to make it clearer.</li>
+<li>Dockerfile tutorial URL fix from Philippe Alexandrew.</li>
+<li>Spelling mistake fixed thanks to Benjamin Herbert.</li>
+<li>Command formatting issue fixed thanks to Michael Prokop.</li>
+</ul>
+
+<h2>v1.0.2 - 7/17/2014</h2>
+<ul>
+<li>Link error and grammar fix thanks to Mauricio Wittenberg.</li>
+<li>Incorrect Redis package citation fixed thanks to Tom de Grunt.</li>
+<li>Fixed typo and some grammar fixes thanks to Hugh Brown.</li>
+<li>Fixed missing word in ADD cache sentence, typo and formatting in Chapter 5 and a host name fix. Thanks to Russell Teabeault for letting me know.</li>
+<li>Added some Installation chapter suggestions from LD Landis.</li>
+<li>Formatting fixes thanks to Adrian Moisey.</li>
+</ul>
+
+<h2>v1.0.1 - 7/15/2014</h2>
+<ul>
+<li>Fixed typo in Introduction thanks to Corey.</li>
+<li>Fixed ePub errors in iBooks and Google Books.</li>
+<li>Fixed two bad commands and a typo reported by Nestor G. Pestelos Jr.</li>
+<li>Fixed Typo found by Justin Downing.</li>
+<li>Fixed output error thanks to Tom de Grunt.</li>
+</ul>
+
+<h2>v1.0.0 - 7/14/2014</h2>
+<ul>
+<li> Initial release.</li>
+</ul>
+
+</p>
+
+<br />
+
+  </div>
+ </div>
+ <!-- /.row -->
+
+ <!-- Signup Modal -->
+
+<div id="signup" class="modal fade" tabindex="-1" data-width="760" style="display: none;">
+ <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h4 class="modal-title">Sign up for updates!</h4>
+ </div>
+ <div class="modal-body">
+  <p class="lead">If you're interested in keeping up to date with The Docker Book please join our mailing list. Updates will be infrequent and to the point.</p>
+  <p class="text-center lead">
+    <form action="//logstashbook.us6.list-manage.com/subscribe/post?u=f3aa656fdcded6d1354d6f4f0&amp;id=e862b2bd10" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+
+    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+      <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+      <div style="position: absolute; left: -5000px;"><input type="text" name="b_f3aa656fdcded6d1354d6f4f0_e862b2bd10" tabindex="-1" value=""></div>
+  &nbsp;&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+  </form>
+</p>
+ </div>
+ <div class="modal-footer">
+  <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+ </div>
+</div>
+
+<!-- End About Modal -->
+
+
+</div>
+<!-- /.container -->
+
+</div>
+<!-- / ________ END .page-content _____________ -->
+
+</div>
+<!-- /#site-wrapper -->
+
+
+<!-- ______________ BEGIN FOOTER ______________ -->
+
+<!-- footer uses a jquery script on the columns to make them responsive equal heights -->
+<!-- THIS USES CUSTOM COLUMNS -->
+
+<footer class="footer clearfix" id="footer">
+ <div class="clearfix">
+  <!-- do not use a row around this -->
+
+  <div class="footer-col-1 text-right-min-width-768px">
+
+   <section>
+    <h5>Follow Us</h5>
+    <ul class="social list-unstyled clearfix">
+     <li><a href="https://twitter.com/kartar" class="fa fa-twitter"></a></li>
+     <li><a href="https://www.github.com/jamtur01" class="fa fa-github"></a></li>
+     <li><a href="https://kartar.net" class="fa fa-wordpress tooltip-hover" title="Visit blog"></a></li>
+     <li><a href="https://www.linkedin.com/in/turnbulljames/" class="fa fa-linkedin"></a></li>
+     <li><a href="https://www.jamesturnbull.net" class="fa fa-home tooltip-hover" title="Visit home page"></a></li>
+    </ul>
+   </section>
+  </div>
+  <!-- / .footer-col-1 -->
+
+  <!-- newsletter signup and recent images-->
+  <div class="footer-col-2">
+   <hr class="visible-xs margin-top-minus-30px">
+   <section>
+    <h5>Stay Updated</h5>
+    <p>Sign up for the mailing list. We won't share your email address.</p>
+    <br />
+<form action="//logstashbook.us6.list-manage.com/subscribe/post?u=f3aa656fdcded6d1354d6f4f0&amp;id=e862b2bd10" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+
+  <input style="color: #000000;" type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;"><input type="text" name="b_f3aa656fdcded6d1354d6f4f0_e862b2bd10" tabindex="-1" value=""></div>
+&nbsp;&nbsp;<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+</form>
+<br />
+   </section>
+
+  </div>
+  <!-- .footer-col-2 -->
+
+  <!-- blog posts-->
+  <div class="footer-col-3">
+   <hr class="visible-xs margin-top-minus-30px">
+   <section>
+   <h5></h5>
+   </section>
+  </div>
+  <!-- close .footer-col-3 -->
+ </div>
+ <!-- close .clearfix-->
+
+ <hr class="no-padding-bottom">
+ <div class="container-fluid">
+  <p class="small margin-top-bottom-20px text-center text-right-min-width-768px">
+  © Site design Copyright 2014 Christina Arasmo Beymer. All rights reserved.
+</p>
+ </div>
+</footer>
+
+<!-- ______________ END FOOTER ______________ -->
+
+
+
+<!--scroll-menu the primary-nav clones here -->
+<div id="scroll-menu" title="menu">
+ <a href="#" class="scroll-menu-toggle"><i class="fa fa-bars"></i></a>
+ <div id="menu-clone"></div>
+</div>
+
+
+<!--to top -->
+<div id="toTop" title="up">
+ <i class="fa fa-arrow-circle-o-up"></i>
+</div>
+
+
+<!-- _________ FOOTER SCRIPTS ________ -->
+
+  <script src="/assets/js/bootstrap.min.js"></script>
+  <script src="/assets/js/jquery.different_base.js"></script>
+
+<!-- Way Better Bootstrap Modals INSTRUCTIONS: https://github.com/jschr/bootstrap-modal/ -->
+<!-- DEMO:: http://jschr.github.io/bootstrap-modal/bs3.html -->
+  <script src="/assets/js/bootstrap-modalmanager.js"></script>
+  <script src="/assets/js/bootstrap-modal.js"></script>
+
+<script type="text/javascript">
+  var _gauges = _gauges || [];
+  (function() {
+    var t   = document.createElement('script');
+    t.type  = 'text/javascript';
+    t.async = true;
+    t.id    = 'gauges-tracker';
+    t.setAttribute('data-site-id', '519e7ffd613f5d5bec000146');
+    t.src = '//secure.gaug.es/track.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(t, s);
+  })();
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41167531-1', 'auto', {'allowLinker': true});
+  ga('require', 'linker');
+  ga('linker:autoLink', ['dpdcart.com']);
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>
